@@ -1,0 +1,82 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+body{
+  font-family: montserrat , sans-serif;
+}
+
+img{
+    display: block;
+    width: 100%;
+    height: auto
+}
+main{
+  width: 100vw;
+  height: 86vh;
+  background-color: lightblue;
+  overflow: auto;
+}
+.hero{
+  height: 7vh;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: space-around;
+}
+.hero h1{
+  text-align: center; 
+  padding-top: 10px;
+}
+.hero p {
+  text-align: center;
+  padding: 20px;
+}
+main ul{
+  margin-top: 10px;
+  list-style:none;
+}
+main ul li{
+  padding: 10px 20px 10px 10px;
+  margin-left: 25px;
+  background-color: aquamarine;
+  margin-bottom: 10px;
+  width: fit-content;
+  border-radius: 5px;
+}
+main ul li:before
+{
+    content: '💬';
+    margin: 0 10px;    /* any design */
+}
+footer{
+  width: 100vw;
+  height: 7vh;
+  background-color: lightgrey;
+  padding: 10px;
+  top: auto;
+  display: flex;
+  justify-content: space-around;
+}
+footer input{
+  width: 40%;
+  background-color: antiquewhite;
+}
+footer :is(input,button){
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  font-size: 120%;
+  transition: .5s;
+}
+
+footer :is(input,button):focus{
+  border: 2px solid aquamarine;
+}
+footer :is(input,button):focus-visible{
+  outline: none;
+}
+button{
+  background-color: aquamarine;
+}

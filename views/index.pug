@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .hero
+    h1  Chat to guapo 💬
+    p Usuarios en linea 
+      span#numUsuarios
+  main 
+    ul#mensajes 
+      each mensaje in ultimosMensajes 
+        li #{mensaje.nombre} -> #{mensaje.mensaje}
+  footer 
+    input#inputNombre(type="text", name="nombre" , placeholder="Nombre")
+    input#inputMensaje(type="text", name="mensaje", placeholder="Mensaje")
+    button#enviar Enviar
+  
+  script.
+    // Cuando pulsemos el boton hacer console.log de un objeto con claves nombre y mensaje y valores, los de los campos de texto
+    const mensajes = document.querySelector('#mensajes')
+    const inputNombre = document.querySelector('#inputNombre')
+    const inputMensaje = document.querySelector('#inputMensaje')
+    const boton = document.querySelector('#enviar')
+    const numUsuarios = document.querySelector('#numUsuarios')
+
+
+    const socket = io()
+    socket.emit('evento_prueba', { nombre : 'Raul'})
+
+    boton.addEventListener('click',() => {
+      const obj = {
+        nombre : inputNombre.value,
+        mensaje: inputMensaje.value
+      }
+      socket.emit('mensaje_chat',obj)
+    })
+
+    socket.on('mensaje_chat' , (data) => {
+      pintarMensaje(data)
+    })
+
+    socket.on('usuarios_chat' , (data) => {
+      numUsuarios.innerText = data
+    })
+
+    function pintarMensaje(data){
+      const li = document.createElement('li')
+      li.innerText = data.nombre + ' -> ' + data.mensaje
+      mensajes.appendChild(li)
+    }
+
